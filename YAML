@@ -1,0 +1,37 @@
+name: Report remaining open issues
+on:
+  schedule:
+    # Daily at 8:20 UTC
+    - cron: '20 8 * * *'
+jobs:
+  track_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get open issue count 馃殌
+        # 楔邪谐 写谢褟 锌芯谢褍褔械薪懈褟 泻芯谢懈褔械褋褌胁邪 芯褌泻褉褘褌褘褏 Issues 褋 锌芯屑芯褖褜褞 GraphQL
+        run: |
+          # 袙 GraphQL 锌芯谢械 'states' 芯卸懈写邪械褌 褋锌懈褋芯泻 (屑邪褋褋懈胁) 褋芯褋褌芯褟薪懈泄, 锌芯褝褌芯屑褍 懈褋锌芯谢褜蟹褍械屑 [OPEN].
+          numOpenIssues="$(gh api graphql -F owner=$OWNER -F name=$REPO -f query='
+            query($name: String!, $owner: String!) {
+              repository(owner: $owner, name: $name) {
+                issues(states: [OPEN]){ # <-- 袠小袩袪袗袙袥袝袧袠袝 袟袛袝小鞋
+                  totalCount
+                }
+              }
+            }
+          ' --jq '.data.repository.issues.totalCount')"
+
+          # 袟邪锌懈褋褘胁邪械屑 褉械蟹褍谢褜褌邪褌 胁 锌械褉械屑械薪薪褍褞 褋褉械写褘, 褔褌芯斜褘 懈褋锌芯谢褜蟹芯胁邪褌褜 械褢 薪邪 褋谢械写褍褞褖械屑 褕邪谐械.
+          echo 'NUM_OPEN_ISSUES='$numOpenIssues >> $GITHUB_ENV
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+
+      - name: Create issue report 馃摑
+        # 楔邪谐 写谢褟 褋芯蟹写邪薪懈褟 薪芯胁芯谐芯 Issue 褋 芯褌褔褢褌芯屑.
+        run: |
+          # 袠褋锌芯谢褜蟹褍械屑 锌械褉械屑械薪薪褍褞 $NUM_OPEN_ISSUES, 褋芯蟹写邪薪薪褍褞 薪邪 锌褉械写褘写褍褖械屑 褕邪谐械.
+          gh issue create --title "Issue report" --body "$NUM_OPEN_ISSUES issues remaining" --repo $GITHUB_REPOSITORY
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
