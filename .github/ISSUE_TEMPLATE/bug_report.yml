@@ -1,0 +1,80 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  Bug Report – YAML Template
+#  (Adapt the fields to match the conventions of your project or tool)
+# ─────────────────────────────────────────────────────────────────────────────
+bug_report:
+  # ── Core information ─────────────────────────────────────────────────────
+  id:                 # Unique identifier (e.g., auto‑generated, JIRA‑1234)
+  title: ""           # Short, descriptive summary of the problem
+  created_at: ""      # ISO‑8601 timestamp (e.g., 2025-12-09T14:32:00Z)
+  reporter:
+    name: ""          # Person who discovered the bug
+    email: ""         # Optional contact
+    team: ""          # Optional team / component
+
+  # ── Classification ─────────────────────────────────────────────────────
+  severity: ""        # Critical | High | Medium | Low | Trivial
+  priority: ""        # P1 | P2 | P3 | P4 (or numeric)
+  type: ""            # UI | Backend | Performance | Security | Regression | …
+  component: ""       # Sub‑system / module / service name
+  version:
+    affected: ""      # Version(s) where bug appears (e.g., 2.4.1)
+    fixed: ""         # Version where it is resolved (if known)
+
+  # ── Description ───────────────────────────────────────────────────────
+  description: |
+    <!-- Provide a concise overview of the problem. -->
+    <!-- Include any relevant business impact. -->
+  steps_to_reproduce:
+    - step: "Open the application"
+      details: ""
+    - step: "Navigate to Settings → Preferences"
+      details: ""
+    - step: "Click the 'Save' button without entering a name"
+      details: ""
+    # Add as many steps as needed.
+  expected_result: |
+    <!-- What should happen when the steps above are executed? -->
+  actual_result: |
+    <!-- What actually happens? Include error messages, screenshots, logs, etc. -->
+  screenshots:          # Optional list of URLs or file paths
+    - "https://example.com/bug1234/screenshot1.png"
+  logs:                 # Optional – paste relevant log excerpts
+    - |
+      2025-12-09 14:31:58 ERROR ... NullReferenceException at ...
+  environment:
+    os: ""               # e.g., Windows 11 22H2, macOS 14.2, Ubuntu 22.04
+    browser: ""         # e.g., Chrome 126.0.6478.126
+    device: ""          # e.g., iPhone 15 Pro, Pixel 8
+    cpu: ""              # e.g., x86_64, ARM64
+    memory: ""           # e.g., 16 GB
+    network: ""          # e.g., Wi‑Fi, LTE, VPN
+    other: ""            # Any extra context (Docker, Kubernetes, etc.)
+
+  # ── Investigation ───────────────────────────────────────────────────────
+  root_cause: ""        # Filled by the engineer after analysis (optional)
+  related_issues:
+    - "JIRA-5678"
+    - "BUG-9012"
+  duplicate_of: ""      # ID of an existing bug if this is a duplicate
+  regression:          # Set to true if the bug re‑appeared after a fix
+    is_regression: false
+    fixed_in_version: ""
+
+  # ── Resolution ────────────────────────────────────────────────────────
+  status: ""            # Open | In Progress | Fixed | Won’t Fix | Duplicate
+  assignee:
+    name: ""            # Engineer or team handling the bug
+    email: ""
+  fix_version: ""       # Target release / sprint
+  resolved_at: ""       # ISO‑8601 timestamp (optional)
+  resolution_notes: |
+    <!-- Summary of the fix, test steps, reviewer, etc. -->
+
+# ─────────────────────────────────────────────────────────────────────────────
+# How to use:
+# 1. Copy the block above into a file (e.g., bug_report.yml) or paste it
+#    into your issue‑tracking UI that supports YAML.
+# 2. Fill in the fields marked with "" or add/remove sections as needed.
+# 3. Save / submit the report.
+# ─────────────────────────────────────────────────────────────────────────────
